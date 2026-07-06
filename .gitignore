@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Streamlit
+.streamlit/secrets.toml
+
+# Chat history (you may keep it if you want to persist locally)
+# chat_sessions.json
+
+# IDE
+.vscode/
+.idea/
+
+# Azure deployment files
+*.zip
+.deployment/
