@@ -58,6 +58,10 @@ Use these app settings in Azure Web App:
 - `OPENAI_BASE_URL` if your router endpoint is different
 - `OPENAI_MODEL` if you want a different default model
 
+In GitHub repository secrets, set:
+
+- `AZURE_WEBAPP_PUBLISH_PROFILE` (downloaded from your Azure Web App Publish Profile)
+
 Set the startup command to:
 
 ```bash
