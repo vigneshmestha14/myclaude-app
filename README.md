@@ -27,3 +27,41 @@
 ```bash
 git clone https://github.com/your-username/myclaude.git
 cd myclaude
+```
+
+### 2. Set environment variables
+
+Create a `.env` file or export these values in your shell:
+
+```bash
+OPENAI_API_KEY=your-api-key
+OPENAI_BASE_URL=https://router.bynara.id/v1
+OPENAI_MODEL=mistral-large
+```
+
+### 3. Run locally
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+---
+
+## Azure Web App Deployment
+
+This project is ready for Azure App Service on Linux.
+
+Use these app settings in Azure Web App:
+
+- `OPENAI_API_KEY` for your router key
+- `OPENAI_BASE_URL` if your router endpoint is different
+- `OPENAI_MODEL` if you want a different default model
+
+Set the startup command to:
+
+```bash
+bash startup.sh
+```
+
+The app listens on `0.0.0.0` and uses the port provided by App Service, or `8000` locally.

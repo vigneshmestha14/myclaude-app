@@ -1,0 +1,47 @@
+{
+  "396e62cf-583d-4f5b-9d95-fa309a92ccda": {
+    "title": "hi",
+    "messages": [
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "hi"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "Hello! How can I assist you today?"
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "hi"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "⚠️ Request failed: Error code: 404 - {'error': {'type': 'not_found', 'message': 'The requested model does not exist.', 'request_id': '5535cb5a-a893-4bc3-8062-90612b6f8c73'}}"
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "text",
+            "text": "hi"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": "Hi! How can I help? 😊"
+      }
+    ],
+    "updated_at": "2026-07-09T05:11:52.761949"
+  }
+}

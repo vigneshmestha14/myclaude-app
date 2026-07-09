@@ -12,11 +12,9 @@ import docx
 from PIL import Image
 
 # ---------- Config ----------
-BASE_URL = "https://router.bynara.id/v1"
-DEFAULT_MODEL = "mistral-large"
-
-# ⚠️ PASTE YOUR API KEY DIRECTLY HERE OR USE ENV VAR:
-MY_API_KEY = os.getenv("OPENAI_API_KEY", "sk-nry-DOPhwx2CiOks_jgf28em2INJmrD8re49KiCae1ikv9s")
+BASE_URL = os.getenv("OPENAI_BASE_URL", "https://router.bynara.id/v1")
+DEFAULT_MODEL = os.getenv("OPENAI_MODEL", "mistral-large")
+MY_API_KEY = os.getenv("OPENAI_API_KEY")
 
 HISTORY_FILE = "chat_sessions.json"
 
@@ -334,8 +332,8 @@ with st.sidebar:
         st.rerun()
 
 # ---------- Guard: API key ----------
-if MY_API_KEY == "your-actual-api-key-here":
-    st.error("Please set your API key (or use environment variable OPENAI_API_KEY).")
+if not MY_API_KEY:
+    st.error("Please set the OPENAI_API_KEY app setting in Azure Web App or in your local environment.")
     st.stop()
 
 client = OpenAI(base_url=BASE_URL, api_key=MY_API_KEY)
@@ -362,9 +360,11 @@ for msg in sess["messages"]:
 user_input = st.chat_input("Message MyClaude...")
 
 if user_input:
+    attached_images = list(st.session_state.uploaded_images)
+
     # Build user message content (text + images)
     content_parts = [{"type": "text", "text": user_input}]
-    for img in st.session_state.uploaded_images:
+    for img in attached_images:
         content_parts.append({
             "type": "image_url",
             "image_url": {"url": img["data_url"]}
@@ -383,7 +383,7 @@ if user_input:
     # Display user message with images
     with st.chat_message("user"):
         st.markdown(user_input)
-        for img in st.session_state.uploaded_images:  # display just after send (they are cleared after, so we need to show before clearing)
+        for img in attached_images:
             st.image(img["data_url"], width=200)
 
     # Prepare system prompt + document context
