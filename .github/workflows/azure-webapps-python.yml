@@ -78,8 +78,19 @@ jobs:
           name: python-app
           path: .
 
+      - name: Check deployment credentials
+        id: check-credentials
+        run: |
+          if [ -n "${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}" ]; then
+            echo "has_publish_profile=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "::warning::AZURE_WEBAPP_PUBLISH_PROFILE is not configured. Skipping Azure deployment."
+            echo "has_publish_profile=false" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: 'Deploy to Azure Web App'
         id: deploy-to-webapp
+        if: steps.check-credentials.outputs.has_publish_profile == 'true'
         uses: azure/webapps-deploy@v2
         with:
           app-name: ${{ env.AZURE_WEBAPP_NAME }}
